@@ -1,9 +1,10 @@
-import styles from './page.module.css'
+import { getFirebaseApp } from "@/firebase/firebse";
+import styles from "./page.module.css";
+import { getApp } from "firebase/app";
+
+getFirebaseApp();
 
 export default function Home() {
-  return (
-    <main className={styles.main}>
-      
-    </main>
-  )
+  console.log(getApp());
+  return <main className={styles.main}></main>;
 }
