@@ -1,17 +1,21 @@
-import firebase from "firebase/compat/app";
-import "firebase/compat/auth";
-import "firebase/compat/firestore";
+import {
+  FirebaseApp,
+  getApps,
+  initializeApp,
+  getApp,
+  FirebaseOptions,
+} from "firebase/app";
 
-firebase.initializeApp({
-  apiKey: process.env.REACT_APP_FIREBASE_KEY,
-  authDomain: process.env.REACT_APP_FIREBASE_DOMAIN,
-  databaseURL: process.env.REACT_APP_FIREBASE_DATABASE,
-  projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
-  storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
-  messagingSenderId: process.env.REACT_APP_FIREBASE_SENDER_ID,
-});
+export const config: FirebaseOptions = {
+  apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
+  authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
+  projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
+  storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGE_SENDER_ID,
+  appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
+  measurementId: process.env.NEXT_PUBLIC_AMESUREMENT_ID,
+};
 
-const auth = firebase.auth();
-const db = firebase.firestore();
-
-export { auth, db };
+export const getFirebaseApp = (): FirebaseApp => {
+  return !getApps().length ? initializeApp(config) : getApp();
+};
