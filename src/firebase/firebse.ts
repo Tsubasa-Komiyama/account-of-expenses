@@ -14,7 +14,10 @@ export const config: FirebaseOptions = {
   messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGE_SENDER_ID,
   appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
   measurementId: process.env.NEXT_PUBLIC_FIREBASE_AMESUREMENT_ID,
+  databaseURL: "https://account-of-expenses-default-rtdb.firebaseio.com/",
 };
+
+const app = initializeApp(firebaseConfig);
 
 export const getFirebaseApp = (): FirebaseApp => {
   return !getApps().length ? initializeApp(config) : getApp();
